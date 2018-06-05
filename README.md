@@ -5,7 +5,9 @@ A simple command line interface for calculating factorials. Built in C++.
 # Build
 
 This program requires:
-    - A C++ compiler
+
+    - Any C++ compiler
+
     - The GMP and GMPXX libraries
 
 To build, use your C++ compiler making sure to include the gmp and gmpxx libraries.
@@ -14,6 +16,12 @@ For example:
 > g++ main.cpp -lgmp -lgmpxx -o factorial
 
 # Usage
+
+Use the program like this:
+
+> factorial.exe [number] [outfile]
+
+For example:
 
 > factorial.exe 10 10factorial.txt
 
