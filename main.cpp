@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <stdio.h>
 #include <gmpxx.h>
 
 int main(int argc, char * argv[])
@@ -33,7 +32,7 @@ int main(int argc, char * argv[])
     }
     
 
-    if (inNum > 100000)
+    if (inNum > 1000)
     {
         // Some weird things happen when you take the factorial of large numbers.
         if (argc != 3)
