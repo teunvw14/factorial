@@ -6,6 +6,10 @@
 int main(int argc, char * argv[])
 {
 
+    //
+    //  INPUT  
+    //
+
     // First check if the user has specified two or three arguments.
     // If not, print out an error message and quit.
     if (argc != 2 && argc != 3)
@@ -31,22 +35,15 @@ int main(int argc, char * argv[])
         return 2;
     }
     
-
-    if (inNum > 1000)
+    //If the output is really large, warn the user it will take a while.
+    if (inNum > 100000)
     {
-        // Some weird things happen when you take the factorial of large numbers.
-        if (argc != 3)
-        {
-            // If the output is really large and there is no output file specified, warn the user.
-            std::cout << std::endl
-                     << "The result is unlikely to fit in the console, specifying an output file is stronly recommended."
-                     << "Try specifying an output file like this: \nfactorial 6 sixfactorial.txt    [writes 720 in sixfactorial.txt]"
-                     << std::endl;
-        }
-
-        // If the output is really large, warn the user it will take a while.
         std::cout << std::endl << "This will take a while.\nYou can quit at any moment by pressing Ctrl+C.";
     }
+
+    //
+    //  CALCULATIONS
+    //
 
     // Initialize the factorial variable and set it to 1.
     mpz_t numFact;
@@ -58,6 +55,10 @@ int main(int argc, char * argv[])
     {
         mpz_mul_ui(numFact, numFact, i);
     }
+    
+    //
+    //  OUTPUT
+    //
 
     if (argc == 3) // Output file specified
     {
@@ -85,6 +86,15 @@ int main(int argc, char * argv[])
         std::cout << std::endl << "Factorial of " << inNum << ": " << std::endl;
         mpz_out_str(stdout, 10, numFact);
         std::cout << std::endl;
+        
+        // If the output is really large and there is no output file specified, hint to use an output file.
+        if (inNum >= 10000 && argc != 3)
+        {
+                    std::cout << std::endl
+                    << "The result likely did not fit in the console, perhaps try specifying an output file. "
+                    << "You can do that like this: \nfactorial 6 sixfactorial.txt    [writes 720 in sixfactorial.txt]"
+                    << std::endl;
+        }   
     }
     // Clear the memory allocated for numFact variable.
     mpz_clear(numFact);
